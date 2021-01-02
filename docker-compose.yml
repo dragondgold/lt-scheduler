@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+    lt-scheduler:
+        image: dragondgold/lt-scheduler
+        container_name: lt-scheduler
+        build:
+            context: .
+            dockerfile: ./Dockerfile
+        networks:
+            - lt-scheduler
+
+    redis:
+        image: redis:6.0-alpine
+        container_name: lt-scheduler-redis
+        volumes:
+            - ./redis.conf:/usr/local/etc/redis/redis.conf
+        networks:
+            - lt-scheduler
+        ports:
+            - 6379:6379
+        command: redis-server /usr/local/etc/redis/redis.conf
+
+networks:
+    lt-scheduler:
+        driver: bridge

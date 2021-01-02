@@ -1,0 +1,23 @@
+{
+    // Use IntelliSense to find out which attributes exist for C# debugging
+    // Use hover for the description of the existing attributes
+    // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "lt-scheduler docker attach",
+            "type": "node",
+            "request": "attach",
+            "port": 9230,
+            "address": "localhost",
+            "remoteRoot": "/usr/app/main",
+            "restart": true,
+            "localRoot": "${workspaceRoot}",
+            "sourceMapPathOverrides": {
+                "webpack:///./~/*": "${workspaceRoot}/node_modules/*",
+                "webpack:///./*": "${workspaceRoot}/*",
+                "webpack:///*": "*"
+            }
+        }
+    ]
+}

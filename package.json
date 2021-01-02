@@ -1,0 +1,40 @@
+{
+    "name": "lt-scheduler",
+    "version": "1.0.0",
+    "description": "Job scheduler based on bull with AWS SQS ingestion and Postgres long-term data store",
+    "main": "index.ts",
+    "scripts": {
+        "build:production": "webpack --mode production --variant=\"release\" --config src/config/webpack.config.js",
+        "build:development": "webpack --mode development --variant=\"development\" --config src/config/webpack.config.js",
+        "dev": "webpack --mode development --config src/config/webpack.config.js --watch",
+        "formatting:run": "prettier --config \".prettierrc\" --ignore-path \".prettierignore\" -u -w \"src/**/*.*\"",
+        "formatting:check": "prettier --config \".prettierrc\" --ignore-path \".prettierignore\" -u -c \"src/**/*.*\"",
+        "lint:check": "eslint -c \".eslintrc.js\" --fix-dry-run --ext .ts src/",
+        "lint:run": "eslint -c \".eslintrc.js\" --fix --ext .ts src/"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/bull": "^3.14.4",
+        "@types/node": "^14.11.5",
+        "@typescript-eslint/eslint-plugin": "^4.4.0",
+        "@typescript-eslint/parser": "^4.4.0",
+        "clean-webpack-plugin": "^3.0.0",
+        "eslint": "^7.10.0",
+        "eslint-config-prettier": "^7.1.0",
+        "eslint-webpack-plugin": "^2.4.1",
+        "nodemon-webpack-plugin": "^4.3.2",
+        "prettier": "^2.1.2",
+        "ts-loader": "^8.0.4",
+        "ts-node": "^9.0.0",
+        "typescript": "^4.0.3",
+        "webpack": "^4.44.2",
+        "webpack-cli": "^3.3.12",
+        "webpack-node-externals": "^2.5.2"
+    },
+    "dependencies": {
+        "aws-sdk": "^2.771.0",
+        "bull": "^3.18.0",
+        "winston": "^3.3.3"
+    }
+}
