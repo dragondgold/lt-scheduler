@@ -4,7 +4,7 @@ const path = require('path');
 // These are the database settings for production
 const devDbConfig = {
     type: 'postgres',
-    host: 'localhost',
+    host: 'postgres',
     port: 5432,
     database: 'lt_scheduler',
     username: 'lt_scheduler',

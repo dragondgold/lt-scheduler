@@ -10,7 +10,13 @@
         "formatting:run": "prettier --config \".prettierrc\" --ignore-path \".prettierignore\" -u -w \"src/**/*.*\"",
         "formatting:check": "prettier --config \".prettierrc\" --ignore-path \".prettierignore\" -u -c \"src/**/*.*\"",
         "lint:check": "eslint -c \".eslintrc.js\" --fix-dry-run --ext .ts src/",
-        "lint:run": "eslint -c \".eslintrc.js\" --fix --ext .ts src/"
+        "lint:run": "eslint -c \".eslintrc.js\" --fix --ext .ts src/",
+        "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js --config ./dist/database/config/ormconfig.js",
+        "typeormTs": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js --config ./src/database/dbConfig.ts",
+        "migrations:generate": "npm run typeormTs -- migration:generate -n",
+        "migrations:run": "npm run typeorm -- migration:run",
+        "migrations:run:dev": "npm run typeormTs -- migration:run",
+        "migrations:revert": "npm run typeorm -- migration:revert"
     },
     "author": "",
     "license": "ISC",
@@ -36,6 +42,7 @@
         "aws-sdk": "^2.771.0",
         "bull": "^3.18.0",
         "pg": "^8.5.1",
+        "tsconfig-paths": "^3.9.0",
         "typeorm": "^0.2.29",
         "winston": "^3.3.3"
     }
