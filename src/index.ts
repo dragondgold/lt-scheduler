@@ -2,11 +2,13 @@ import config from './config/config';
 import { LtJob } from './typings/job';
 import { getQueue, setQueuesEventListener } from './util/queues';
 import { getSqsAttributes, getSqsMessage, getSqsUrl, removeSqsMessage } from './util/sqs';
+import { connect } from '@/database';
 import { buildLogger } from '@/logger';
 const logger = buildLogger(module);
 
 (async () => {
     logger.info(`Redis is on port ${config.REDIS_PORT} at ${config.REDIS_HOST}`);
+    await connect();
 
     setQueuesEventListener((event, queue, jobId, args) => {
         // TODO: update job status in db
@@ -54,6 +56,10 @@ const logger = buildLogger(module);
                                 if (job.data) {
                                     job.data = JSON.parse(job.data);
                                 }
+
+                                // Override job id
+                                job.options = job.options || {};
+                                job.options.jobId = job.id;
 
                                 if (job.name) {
                                     await bullQueue.add(job.name, job.data, job.options);

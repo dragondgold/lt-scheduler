@@ -21,6 +21,19 @@ services:
             - 6379:6379
         command: redis-server /usr/local/etc/redis/redis.conf
 
+    postgres:
+        image: postgres:12.4-alpine
+        container_name: lt-scheduler-postgres
+        volumes:
+            - ./init-user-db.sh:/docker-entrypoint-initdb.d/init-user-db.sh
+            - ./pgdata:/var/lib/postgresql/data
+        networks:
+            - lt-scheduler
+        ports:
+            - 5433:5432
+        environment:
+            POSTGRES_PASSWORD: 12345678
+
 networks:
     lt-scheduler:
         driver: bridge

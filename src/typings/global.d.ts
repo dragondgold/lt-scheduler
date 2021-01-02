@@ -10,6 +10,10 @@ declare global {
             SQS_REGION: string;
             SQS_NAME: string;
             NODE_ENV: 'development' | 'production';
+            POSTGRES_PORT?: string;
+            POSTGRES_HOST?: string;
+            POSTGRES_USERNAME?: string;
+            POSTGRES_PASSWORD?: string;
         }
     }
 }

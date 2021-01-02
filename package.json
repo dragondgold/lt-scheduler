@@ -35,6 +35,8 @@
     "dependencies": {
         "aws-sdk": "^2.771.0",
         "bull": "^3.18.0",
+        "pg": "^8.5.1",
+        "typeorm": "^0.2.29",
         "winston": "^3.3.3"
     }
 }
